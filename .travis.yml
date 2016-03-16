@@ -13,7 +13,7 @@ matrix:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install phpunit/phpunit
+  - travis_retry composer require phpunit/phpunit
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
