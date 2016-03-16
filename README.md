@@ -9,4 +9,28 @@
 Everyone needs a little assistance! Attempts to be [PSR-1](http://www.php-fig.org/psr/psr-1/)
 and [PSR-2](http://www.php-fig.org/psr/psr-2/) compliant.
 
-For more information, see [the documentation](http://equipframework.readthedocs.org/en/latest/assist).
+## Array Functions
+
+### `grab`
+
+Grabs all of the given keys from the source array and returns the result.
+If a key does not exist, nothing is added.
+
+```php
+$found = \Equip\grab($source, $keys);
+```
+
+### `head`
+
+Gets the first value from an list without altering it.
+
+```php
+$first = \Equip\head($list);
+```
+### `tail`
+
+Gets the last value from an list without altering it.
+
+```php
+$last = \Equip\tail($list);
+```
