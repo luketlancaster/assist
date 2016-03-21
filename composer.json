@@ -14,6 +14,10 @@
     },
     "require-dev": {
     },
+    "suggest": {
+        "phpunit/phpunit": "Install globally to run unit tests",
+        "phpbench/phpbench": "Install globally to run benchmarks"
+    },
     "autoload": {
         "files": [
             "src/array.php"
@@ -21,7 +25,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Equip\\as\\": "tests/"
+            "Equip\\Assist\\": "tests/"
         }
+    },
+    "scripts": {
+        "bench": "phpbench run --report=aggregate --revs=100 --iterations=5",
+        "test": "phpunit"
     }
 }
