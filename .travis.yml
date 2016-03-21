@@ -13,11 +13,12 @@ matrix:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer require phpunit/phpunit
+  - travis_retry composer require phpunit/phpunit phpbench/phpbench
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit
+  - composer test
+  - composer bench
 
 after_script:
   - bash -c '[[ -f "build/logs/clover.xml" ]] && wget https://scrutinizer-ci.com/ocular.phar'
