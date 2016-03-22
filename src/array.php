@@ -59,3 +59,20 @@ function to_array($value)
 
     return iterator_to_array($value);
 }
+
+/**
+ * Extract a specific key from each array
+ *
+ * @param array $source
+ * @param string $key
+ *
+ * @return array
+ */
+function pluck(array $source, $key)
+{
+    return array_map(function ($array) use ($key) {
+        if (isset($array[$key])) {
+            return $array[$key];
+        }
+    }, $source);
+}
