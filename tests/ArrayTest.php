@@ -2,6 +2,7 @@
 
 namespace Equip\Assist;
 
+use ArrayObject;
 use Equip;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -68,5 +69,28 @@ class ArrayTest extends TestCase
 
         // Works with collections
         $this->assertSame(['c'], Equip\tail($this->list));
+    }
+
+    public function dataArrays()
+    {
+        return [
+            [ [] ],
+            [ ['b'] ],
+            [ ['b' => 'baz'] ],
+        ];
+    }
+
+    /**
+     * @dataProvider dataArrays
+     */
+    public function testToArray($value)
+    {
+        // Works with arrays
+        $this->assertSame($value, Equip\to_array($value));
+
+        $traversable = new ArrayObject($value);
+
+        // And with traversables
+        $this->assertSame($value, Equip\to_array($traversable));
     }
 }

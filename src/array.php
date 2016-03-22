@@ -41,3 +41,21 @@ function tail(array $list)
 {
     return array_pop($list);
 }
+
+/**
+ * Get an array from a value.
+ *
+ * If the value is not an array, it is assumed to be a Traversable.
+ *
+ * @param Traversable|array $value
+ *
+ * @return array
+ */
+function to_array($value)
+{
+    if (is_array($value)) {
+        return $value;
+    }
+
+    return iterator_to_array($value);
+}
