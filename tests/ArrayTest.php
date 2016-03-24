@@ -41,6 +41,34 @@ class ArrayTest extends TestCase
         );
     }
 
+    public function testExcept()
+    {
+        // Works with a single key
+        $this->assertSame(
+            [
+                'owner' => 'Dr Acme',
+                'industry' => 'Financial',
+            ],
+            Equip\except($this->hash, 'company')
+        );
+
+        // Or an array of keys
+        $this->assertSame(
+            ['industry' => 'Financial'],
+            Equip\except($this->hash, ['company', 'owner'])
+        );
+
+        // Missing keys do not cause errors
+        $this->assertSame(
+            [
+                'company' => 'Acme',
+                'owner' => 'Dr Acme',
+                'industry' => 'Financial',
+            ],
+            Equip\except($this->hash, ['never', 'gonna'])
+        );
+    }
+
     public function testHead()
     {
         // Works with no value

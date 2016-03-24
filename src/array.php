@@ -19,6 +19,24 @@ function grab(array $source, $keys)
 }
 
 /**
+ * Exclude some values from an array.
+ *
+ * This is the inverse of grab().
+ *
+ * @param array $source
+ * @param array|string $keys
+ *
+ * @return array
+ */
+function except(array $source, $keys)
+{
+    return array_diff_key(
+        $source,
+        array_flip((array) $keys)
+    );
+}
+
+/**
  * Take the first value from an array.
  *
  * @param array $list
