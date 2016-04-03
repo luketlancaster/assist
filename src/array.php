@@ -96,6 +96,32 @@ function without($source, $keys)
 }
 
 /**
+ * Grab some values from an array, ensuring that all keys are defined.
+ *
+ * If a given key does not exist, the default value will be set.
+ *
+ * @param array|Traversable $source
+ * @param array|string $keys
+ * @param mixed $default
+ *
+ * @return array
+ */
+function expect($source, $keys, $default = null)
+{
+    $defaults = array_fill_keys(
+        to_array($keys),
+        $default
+    );
+
+    $source = to_array($source);
+
+    return array_replace(
+        array_intersect_key($source, $defaults),
+        array_diff_key($defaults, $source)
+    );
+}
+
+/**
  * Take the first value from an array.
  *
  * @param array $list

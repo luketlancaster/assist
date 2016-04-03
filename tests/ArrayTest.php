@@ -95,6 +95,37 @@ class ArrayTest extends TestCase
         );
     }
 
+    public function testExpect()
+    {
+        // Works with a single key
+        $this->assertSame(
+            ['company' => 'Acme'],
+            expect($this->hash, 'company')
+        );
+
+        // Defines missing keys
+        $this->assertSame(
+            [
+                'company' => 'Acme',
+                'owner' => 'Dr Acme',
+                'lawyer' => null,
+            ],
+            expect($this->hash, ['company', 'owner', 'lawyer'])
+        );
+
+        // Works with a string for the key
+        $this->assertSame(
+            ['janitor' => null],
+            expect($this->hash, 'janitor')
+        );
+
+        // Default value can be set
+        $this->assertSame(
+            ['janitor' => false],
+            expect($this->hash, 'janitor', false)
+        );
+    }
+
     public function testHead()
     {
         // Works with no value
