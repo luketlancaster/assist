@@ -12,8 +12,6 @@
     "require": {
         "php": ">=5.5"
     },
-    "require-dev": {
-    },
     "suggest": {
         "phpunit/phpunit": "Install globally to run unit tests",
         "phpbench/phpbench": "Install globally to run benchmarks"
