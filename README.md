@@ -11,26 +11,25 @@ and [PSR-2](http://www.php-fig.org/psr/psr-2/) compliant.
 
 ## Array Functions
 
-### `grab`
+All array functions:
 
-Grabs all of the given keys from the source array and returns the result.
-If a key does not exist, nothing is added.
+- put the array as the first parameter
+- work with both arrays and `Traversable` parameters
 
-```php
-$found = \Equip\grab($source, $keys);
-```
+Import any function with `use function Equip\Arr\func;`.
 
-### `head`
+### List of functions
 
-Gets the first value from an list without altering it.
+`exists($source, $key)` check if a key exists in an array.
 
-```php
-$first = \Equip\head($list);
-```
-### `tail`
+`to_array($value)` convert a value to an array.
 
-Gets the last value from an list without altering it.
+`get($source, $key, $default)` get a value from an array, or the default.
 
-```php
-$last = \Equip\tail($list);
-```
+`some($source, $keys)` get some values from an array.
+
+`without($source, $keys)` get an array without some values.
+
+`head($list)` get the first value from a list.
+
+`tail($list)` get the last value from a list.

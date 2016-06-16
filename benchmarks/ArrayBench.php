@@ -1,17 +1,17 @@
 <?php
 
-namespace Equip;
+namespace Equip\Arr;
 
 class ArrayBench
 {
     public function benchHead()
     {
-        return \Equip\head($this->words());
+        return head($this->words());
     }
 
     public function benchTail()
     {
-        return \Equip\tail($this->words());
+        return tail($this->words());
     }
 
     private function words()

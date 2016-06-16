@@ -18,13 +18,12 @@
     },
     "autoload": {
         "files": [
-            "src/array.php",
-            "src/misc.php"
+            "src/array.php"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-            "Equip\\Assist\\": "tests/"
+            "Equip\\": "tests/"
         }
     },
     "scripts": {
