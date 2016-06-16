@@ -1,6 +1,6 @@
 <?php
 
-namespace Equip;
+namespace Equip\Arr;
 
 use Traversable;
 
