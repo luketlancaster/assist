@@ -148,35 +148,4 @@ class ArrayTest extends TestCase
         // And with traversables
         $this->assertSame($value, Equip\to_array($traversable));
     }
-
-    public function dataPluck()
-    {
-        $data = [
-            ['id' => 0, 'company' => 'Luna'],
-            ['id' => 1, 'company' => 'Acme'],
-            ['id' => 2, 'company' => 'Umbrella'],
-        ];
-
-        return [
-            [
-                $data,
-                'company',
-                ['Luna', 'Acme', 'Umbrella'],
-            ],
-            [
-                $data,
-                'wrong',
-                [null, null, null]
-            ]
-        ];
-    }
-
-
-    /**
-     * @dataProvider dataPluck
-     */
-    public function testPluck($source, $key, $expected)
-    {
-        $this->assertSame($expected, Equip\pluck($source, $key));
-    }
 }
