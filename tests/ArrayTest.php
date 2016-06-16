@@ -20,6 +20,33 @@ class ArrayTest extends TestCase
         ['c'],
     ];
 
+    public function testTake()
+    {
+        // Works with hash
+        $this->assertSame(
+            'Acme',
+            Equip\take($this->hash, 'company')
+        );
+
+        // Or with list
+        $this->assertSame(
+            ['b'],
+            Equip\take($this->list, 1)
+        );
+
+        // Value does not exist
+        $this->assertSame(
+            null,
+            Equip\take($this->hash, 'missing')
+        );
+
+        // Default value can be provided
+        $this->assertSame(
+            true,
+            Equip\take($this->hash, 'profitable', true)
+        );
+    }
+
     public function testGrab()
     {
         // Works with a single key

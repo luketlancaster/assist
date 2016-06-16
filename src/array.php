@@ -3,6 +3,26 @@
 namespace Equip;
 
 /**
+ * Get a single value from an array.
+ *
+ * If the value does not exist, the default will be returned.
+ *
+ * @param array $source
+ * @param string|integer $key
+ * @param mixed $default
+ *
+ * @return mixed
+ */
+function take(array $source, $key, $default = null)
+{
+    if (isset($source[$key])) {
+        return $source[$key];
+    }
+
+    return $default;
+}
+
+/**
  * Grab some values from an array.
  *
  * @param array $source
