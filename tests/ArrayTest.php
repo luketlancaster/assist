@@ -20,55 +20,55 @@ class ArrayTest extends TestCase
         ['c'],
     ];
 
-    public function testTake()
+    public function testGet()
     {
         // Works with hash
         $this->assertSame(
             'Acme',
-            Equip\take($this->hash, 'company')
+            Equip\get($this->hash, 'company')
         );
 
         // Or with list
         $this->assertSame(
             ['b'],
-            Equip\take($this->list, 1)
+            Equip\get($this->list, 1)
         );
 
         // Value does not exist
         $this->assertSame(
             null,
-            Equip\take($this->hash, 'missing')
+            Equip\get($this->hash, 'missing')
         );
 
         // Default value can be provided
         $this->assertSame(
             true,
-            Equip\take($this->hash, 'profitable', true)
+            Equip\get($this->hash, 'profitable', true)
         );
     }
 
-    public function testGrab()
+    public function testSome()
     {
         // Works with a single key
         $this->assertSame(
             ['company' => 'Acme'],
-            Equip\grab($this->hash, 'company')
+            Equip\some($this->hash, 'company')
         );
 
         // Or an array of keys
         $this->assertSame(
             ['company' => 'Acme', 'owner' => 'Dr Acme'],
-            Equip\grab($this->hash, ['company', 'owner'])
+            Equip\some($this->hash, ['company', 'owner'])
         );
 
         // Missing keys do not cause errors
         $this->assertSame(
             [],
-            Equip\grab($this->hash, ['never', 'gonna'])
+            Equip\some($this->hash, ['never', 'gonna'])
         );
     }
 
-    public function testExcept()
+    public function testWithout()
     {
         // Works with a single key
         $this->assertSame(
@@ -76,13 +76,13 @@ class ArrayTest extends TestCase
                 'owner' => 'Dr Acme',
                 'industry' => 'Financial',
             ],
-            Equip\except($this->hash, 'company')
+            Equip\without($this->hash, 'company')
         );
 
         // Or an array of keys
         $this->assertSame(
             ['industry' => 'Financial'],
-            Equip\except($this->hash, ['company', 'owner'])
+            Equip\without($this->hash, ['company', 'owner'])
         );
 
         // Missing keys do not cause errors
@@ -92,7 +92,7 @@ class ArrayTest extends TestCase
                 'owner' => 'Dr Acme',
                 'industry' => 'Financial',
             ],
-            Equip\except($this->hash, ['never', 'gonna'])
+            Equip\without($this->hash, ['never', 'gonna'])
         );
     }
 
@@ -126,26 +126,24 @@ class ArrayTest extends TestCase
         $this->assertSame(['c'], Equip\tail($this->list));
     }
 
-    public function dataArrays()
-    {
-        return [
-            [ [] ],
-            [ ['b'] ],
-            [ ['b' => 'baz'] ],
-        ];
-    }
-
-    /**
-     * @dataProvider dataArrays
-     */
-    public function testToArray($value)
+    public function testToArray()
     {
         // Works with arrays
-        $this->assertSame($value, Equip\to_array($value));
-
-        $traversable = new ArrayObject($value);
+        $this->assertSame([], Equip\to_array([]));
+        $this->assertSame(['b'], Equip\to_array(['b']));
 
         // And with traversables
-        $this->assertSame($value, Equip\to_array($traversable));
+        $source = new ArrayObject(['foo' => 'bar']);
+        $this->assertSame(['foo' => 'bar'], Equip\to_array($source));
+
+        // And with objects
+        $source = new \stdClass;
+        $source->obj = true;
+        $this->assertSame(['obj' => true], Equip\to_array($source));
+
+        // And with scalars
+        $this->assertSame([true], Equip\to_array(true));
+        $this->assertSame([3], Equip\to_array(3));
+        $this->assertSame(['str'], Equip\to_array('str'));
     }
 }
