@@ -145,4 +145,38 @@ class ArrayTest extends TestCase
         $this->assertSame([3], to_array(3));
         $this->assertSame(['str'], to_array('str'));
     }
+
+    public function testIndexBy()
+    {
+        $collection = [
+            [
+                'id' => 1,
+                'name' => 'joe',
+            ],
+            [
+                'id' => 2,
+                'name' => 'joe',
+            ],
+            [
+                'id' => 3,
+                'name' => 'sue',
+            ],
+        ];
+
+        $indexed = index_by($collection, 'id');
+
+        foreach ($indexed as $key => $row) {
+            $this->assertSame($key, $row['id']);
+        }
+
+        $collection = array_map(function ($row) {
+            return (object) $row;
+        }, $collection);
+
+        $indexed = index_by($collection, 'id');
+
+        foreach ($indexed as $key => $row) {
+            $this->assertSame($key, $row->id);
+        }
+    }
 }
