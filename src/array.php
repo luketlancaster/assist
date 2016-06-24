@@ -120,3 +120,27 @@ function tail($list)
     $list = to_array($list);
     return array_pop($list);
 }
+
+/**
+ * Index an collection by a key.
+ *
+ * Rows in the collection can be arrays or objects.
+ *
+ * @param array|Traversable $source
+ *
+ * @return array
+ */
+function index_by($source, $key)
+{
+    $indexed = [];
+
+    foreach ($source as $row) {
+        if (is_object($row)) {
+            $indexed[$row->$key] = $row;
+        } else {
+            $indexed[$row[$key]] = $row;
+        }
+    }
+
+    return $indexed;
+}
