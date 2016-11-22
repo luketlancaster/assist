@@ -12,13 +12,17 @@
     "require": {
         "php": ">=5.5"
     },
+    "require-dev": {
+        "lstrojny/functional-php": "<=1.2.4"
+    },
     "suggest": {
         "phpunit/phpunit": "Install globally to run unit tests",
         "phpbench/phpbench": "Install globally to run benchmarks"
     },
     "autoload": {
         "files": [
-            "src/array.php"
+            "src/array.php",
+            "src/string.php"
         ]
     },
     "autoload-dev": {
